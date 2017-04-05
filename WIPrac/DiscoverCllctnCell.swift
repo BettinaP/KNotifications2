@@ -15,12 +15,9 @@ class DiscoverCllctnCell: UICollectionViewCell {
     @IBOutlet weak var toFavButton: UIButton!
     
     func  configureDiscoverCollectionCell(photo: UIImage, indexPath: IndexPath) {
-        print("cellconfig func in cell subclass")
         
-        //        photo.image = UIImage(named: "dress\(indexPath.row + 1)")
         cllctnImageView.image = UIImage(named: "dress\(indexPath.row + 1)")
-        //UIImage(named: "dress\(indexPath.row + 1)")
-        //(named: photo.id)
+       
         
     }
 }

@@ -7,3 +7,41 @@
 //
 
 import Foundation
+import UIKit
+
+class GridFlowLayout: UICollectionViewFlowLayout {
+    
+    let itemHeight: CGFloat = 120
+    
+    override init() {
+        super.init()
+        setupLayout()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupLayout() {
+        minimumInteritemSpacing = 1
+        minimumLineSpacing = 1
+        scrollDirection = .vertical
+    }
+    
+    func itemWidth() -> CGFloat {
+        return ((collectionView!.frame.width)/3) - 1
+    }
+    
+    override var itemSize: CGSize {
+        set {
+            self.itemSize = CGSize(width: itemWidth(), height: itemHeight)
+        }
+        get {
+            return CGSize(width: itemWidth(), height: itemHeight)
+        }
+        
+    }
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+        return (collectionView?.contentOffset)!
+    }
+}
