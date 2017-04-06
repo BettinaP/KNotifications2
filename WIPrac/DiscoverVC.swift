@@ -15,6 +15,9 @@ class DiscoverVC: UIViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var searchIcon: UITabBarItem!
+    
+    
     let store = PhotoDataStore.sharedInstance
     let gridFlowLayout = GridFlowLayout()
     let listFlowLayout = ListFlowLayout()
@@ -29,6 +32,7 @@ class DiscoverVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         setupDataSource()
         setupInitialLayout()
+         
     }
     
     

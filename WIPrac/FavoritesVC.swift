@@ -13,6 +13,8 @@ class FavoritesVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     @IBOutlet weak var favoritesTableView: UITableView!
   
+    @IBOutlet weak var favoritesIcon: UITabBarItem!
+   
     var controller: NSFetchedResultsController<FavPic>!
     
     override func viewDidLoad() {
@@ -107,7 +109,9 @@ class FavoritesVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     @IBAction func favoritedBttnPressed(_ sender: Any) {
-    
+       // context.delete(<#T##object: NSManagedObject##NSManagedObject#>)
+      //  context.delete(controller.object(at: ))
+     //do  try(context.save()) catch error
     }
     
 }
