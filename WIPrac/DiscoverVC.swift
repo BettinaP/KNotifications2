@@ -9,7 +9,7 @@
 import UIKit
 
 class DiscoverVC: UIViewController {
-
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -19,10 +19,7 @@ class DiscoverVC: UIViewController {
     let gridFlowLayout = GridFlowLayout()
     let listFlowLayout = ListFlowLayout()
     var isGridFlowLayoutUsed = false
-    
-  //  var photoGallery = [GalleryPhoto]()
-    //let store = PhotoDataStore.sharedInstance
-    
+    var discCell = DiscoverCllctnCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +33,17 @@ class DiscoverVC: UIViewController {
     
     
     
-    @IBAction func segControlSwitchingLayout(_ sender: Any) { 
+    @IBAction func segControlSwitchingLayout(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             isGridFlowLayoutUsed = true
-            UIView.animate(withDuration: 0.1, animations: { 
+            UIView.animate(withDuration: 0.1, animations: {
                 self.collectionView.collectionViewLayout.invalidateLayout()
                 self.collectionView.setCollectionViewLayout(self.gridFlowLayout, animated: true)
             })
         case 1:
             isGridFlowLayoutUsed = false
-            UIView.animate(withDuration: 0.1, animations: { 
+            UIView.animate(withDuration: 0.1, animations: {
                 self.collectionView.collectionViewLayout.invalidateLayout()
                 self.collectionView.setCollectionViewLayout(self.listFlowLayout, animated: true)
             })
@@ -55,26 +52,45 @@ class DiscoverVC: UIViewController {
             break
             
             
-//        case 0:
-//            let vc = self.storyboard!.instantiateViewController(withIdentifier: "discoverCollection") as! DiscoverVC
-//            self.present(vc, animated: true, completion: nil)
-//        case 1:
-//            let vc = self.storyboard!.instantiateViewController(withIdentifier: "discoverAsTable") as! DiscoverAsListVC
-//            self.present(vc, animated: true, completion: nil)
-//        default:
-//            break
+            //        case 0:
+            //            let vc = self.storyboard!.instantiateViewController(withIdentifier: "discoverCollection") as! DiscoverVC
+            //            self.present(vc, animated: true, completion: nil)
+            //        case 1:
+            //            let vc = self.storyboard!.instantiateViewController(withIdentifier: "discoverAsTable") as! DiscoverAsListVC
+            //            self.present(vc, animated: true, completion: nil)
+            //        default:
+            //            break
         }
         
     }
-   
-  
-   
+    
+    
+    
     @IBAction func saveAsFavButtonPressed(_ sender: Any) {
-            //        var favoritedPhoto = FavoritePhoto(context: context)
-            //
-            //        ad.saveContext()
+        
+        let favoritedPhoto = FavPic(context: context)
+        
+        //        if favoritedPhoto.picture == nil {
+        //            print("picture value is nil")
+        //            //favoritedPhoto.picture = UIImage(named: "\(sender.)")
+        //        } else {
+        //        }
+        favoritedPhoto.picture = discCell.cllctnImageView.image!
+        print(discCell.cllctnImageView.image ?? "pic is nil")
+        
+        
+        //favoritedPhoto.id = "\(discCell.cllctnImageView)"
+        
+        discCell.toFavButton.imageView?.image = UIImage(named: "heartRed")
+        
+        appDel.saveContext()
         
     }
+    
+    //    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+    //        collectionView.collectionViewLayout.invalidateLayout()
+    //    }
+    
 }
 
 extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -84,7 +100,7 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         
         store.createImageArray()
         collectionView.reloadData()
-    
+        
     }
     
     func setupInitialLayout() {
@@ -98,10 +114,10 @@ extension DiscoverVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         return store.imageArray.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "discoverCollCell", for: indexPath) as! DiscoverCllctnCell
-       
-        cell.configureDiscoverCollectionCell(photo: store.imageArray[indexPath.row], indexPath: indexPath)
-        return cell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {         discCell = collectionView.dequeueReusableCell(withReuseIdentifier: "discoverCollCell", for: indexPath) as! DiscoverCllctnCell
+        
+        discCell.configureDiscoverCollectionCell(photo: store.imageArray[indexPath.row], indexPath: indexPath)
+        return discCell
     }
-
+    
 }

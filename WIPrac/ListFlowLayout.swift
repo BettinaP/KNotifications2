@@ -11,7 +11,7 @@ import UIKit
 
 class ListFlowLayout: UICollectionViewFlowLayout {
     
-    let itemHeight: CGFloat = 310
+    let itemHeight: CGFloat = 333
     
     override init() {
         super.init()
@@ -26,7 +26,7 @@ class ListFlowLayout: UICollectionViewFlowLayout {
     
     func setupLayout() {
         minimumInteritemSpacing = 0
-        minimumLineSpacing = 1
+        minimumLineSpacing = 2
         scrollDirection = .vertical
     }
     

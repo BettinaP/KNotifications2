@@ -23,8 +23,8 @@ class GridFlowLayout: UICollectionViewFlowLayout {
     }
     
     func setupLayout() {
-        minimumInteritemSpacing = 1
-        minimumLineSpacing = 1
+        minimumInteritemSpacing = 1.5
+        minimumLineSpacing = 2
         scrollDirection = .vertical
     }
     

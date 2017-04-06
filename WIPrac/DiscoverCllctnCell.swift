@@ -11,13 +11,14 @@ import UIKit
 class DiscoverCllctnCell: UICollectionViewCell {
     
     @IBOutlet weak var cllctnImageView: UIImageView!
-    
     @IBOutlet weak var toFavButton: UIButton!
+    
+    let listLayout = ListFlowLayout()
+    let gridLayout = GridFlowLayout()
     
     func  configureDiscoverCollectionCell(photo: UIImage, indexPath: IndexPath) {
         
-        cllctnImageView.image = UIImage(named: "dress\(indexPath.row + 1)")
-       
+        cllctnImageView.image = UIImage(named: "dress\(indexPath.row + 1)")     
         
     }
 }
